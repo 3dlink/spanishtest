@@ -22,9 +22,11 @@ class UserFixture extends CakeTestFixture {
 		'email_verified' => array('type' => 'integer', 'null' => true, 'default' => '0', 'length' => 1, 'unsigned' => false),
 		'active' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 1, 'unsigned' => false),
 		'ip_address' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'
-due_date' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'due_date' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'asigned' => array('type' => 'integer', 'null' => true, 'default' => '0', 'length' => 4, 'unsigned' => false),
+		'token' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'done' => array('type' => 'integer', 'null' => true, 'default' => '0', 'length' => 4, 'unsigned' => false),
+		'expired' => array('type' => 'integer', 'null' => true, 'default' => '0', 'length' => 4, 'unsigned' => false),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(
@@ -54,11 +56,13 @@ due_date' => array('type' => 'datetime', 'null' => true, 'default' => null),
 			'email_verified' => 1,
 			'active' => 1,
 			'ip_address' => 'Lorem ipsum dolor sit amet',
-			'
-due_date' => '2017-01-27 06:01:56',
+			'due_date' => '2017-02-21 01:00:59',
 			'asigned' => 1,
-			'created' => '2017-01-27 06:01:56',
-			'modified' => '2017-01-27 06:01:56'
+			'token' => 'Lorem ipsum dolor sit amet',
+			'done' => 1,
+			'expired' => 1,
+			'created' => '2017-02-21 01:00:59',
+			'modified' => '2017-02-21 01:00:59'
 		),
 	);
 

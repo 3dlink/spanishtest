@@ -5,6 +5,7 @@ App::uses('AppModel', 'Model');
  *
  * @property UserGroup $UserGroup
  * @property LoginToken $LoginToken
+ * @property Result $Result
  * @property Question $Question
  */
 class User extends AppModel {
@@ -35,6 +36,19 @@ class User extends AppModel {
 	public $hasMany = array(
 		'LoginToken' => array(
 			'className' => 'LoginToken',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Result' => array(
+			'className' => 'Result',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',

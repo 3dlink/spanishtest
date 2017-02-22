@@ -20,7 +20,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version());
     echo $this->Html->css('style');
     echo $this->Html->css('animate');
     echo $this->Html->css('bootstrap-datetimepicker.min');
-    echo $this->Html->css('multiple-select');
+    echo $this->Html->css('toast.min');
 
     echo $this->Html->script('jquery-2.2.0.min');
     echo $this->Html->script('jquery.jplayer.min');
@@ -28,8 +28,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version());
     echo $this->Html->script('bootstrap.min');
     echo $this->Html->script('dropzone');
     echo $this->Html->script('moment.js');
-    echo $this->Html->script('bootstrap-datetimepicker.min');
-    echo $this->Html->script('multiple-select');
+    echo $this->Html->script('toast.min');
 
     
   echo $this->fetch('meta');
@@ -37,7 +36,27 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version());
     echo $this->fetch('script');
     ?>
     
-<script type="text/javascript">WEBROOT='<?php echo $this->webroot; ?>';</script>
+<script type="text/javascript">WEBROOT='<?php echo $this->webroot; ?>';
+
+  toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-bottom-full-width",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
+
+</script>
   </head>
   <body>    
     <!--Header Open-->

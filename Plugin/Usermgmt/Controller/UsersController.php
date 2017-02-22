@@ -26,7 +26,7 @@ class UsersController extends UserMgmtAppController {
 	 *
 	 * @var array
 	 */
-	public $uses = array('Usermgmt.User', 'Usermgmt.UserGroup', 'Usermgmt.LoginToken');
+	public $uses = array('Usermgmt.User', 'Answer', 'Category', 'Type','Usermgmt.UserGroup', 'Usermgmt.LoginToken' );
 	public $components = array('Paginator');
 	/**
 	 * Called before the controller action.  You can use this method to configure and customize components
@@ -115,19 +115,152 @@ class UsersController extends UserMgmtAppController {
 
 	public function viewUser($userId=null) {
 		if (!empty($userId)) {
-			$user_=$this->UserAuth->getUser();
-			$user = $this->User->read(null, $userId);
-			if(isset($user['User']['id'])){
-				if($user['User']['id'] == $user_['User']['id'])
-					$this->set('user', $user);
-				else
-					$this->redirect('/viewUser/'.$user_['User']['id']);
-			}else{
-					$this->redirect('/viewUser/'.$user_['User']['id']);
+			$this->User->recursive = 2;
+			$user = $this->User->findById($userId);
+
+			$allResults = $user['Result'];
+
+			$results = array();
+			foreach ($allResults as $key => $value) {
+				$category = $this->Category->findById($value['Question'][0]['category_id']);
+				$type = $this->Type->findById($value['Question'][0]['type_id']);
+				$answer_0 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_0']);
+				$correct_0 = $value['Question'][0]['ResultsQuestion']['correct'];
+				$selected_0 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
+
+				if($selected_0 == $value['Question'][0]['ResultsQuestion']['answer_0']){
+					$selected_0 = 1;
+				}else{
+					$selected_0 = 0;
+				}
+
+				if($correct_0 == $value['Question'][0]['ResultsQuestion']['answer_0']){
+					$correct_0 = 1;
+				}else{
+					$correct_0 = 0;
+				}
+
+				$good = 0;
+				if($correct_0 && $selected_0)
+					$good = 1;
+
+
+				$answer_1 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_1']);
+				$correct_1 = $value['Question'][0]['ResultsQuestion']['correct'];
+				$selected_1 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
+
+				if($selected_1 == $value['Question'][0]['ResultsQuestion']['answer_1']){
+					$selected_1 = 1;
+				}else{
+					$selected_1 = 0;
+				}
+
+				if($correct_1 == $value['Question'][0]['ResultsQuestion']['answer_1']){
+					$correct_1 = 1;
+				}else{
+					$correct_1 = 0;
+				}
+
+				if($correct_1 && $selected_1)
+					$good = 1;
+
+
+				$answer_2 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_2']);
+				$correct_2 = $value['Question'][0]['ResultsQuestion']['correct'];
+				$selected_2 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
+
+				if($selected_2 == $value['Question'][0]['ResultsQuestion']['answer_2']){
+					$selected_2 = 1;
+				}else{
+					$selected_2 = 0;
+				}
+
+				if($correct_2 == $value['Question'][0]['ResultsQuestion']['answer_2']){
+					$correct_2 = 1;
+				}else{
+					$correct_2 = 0;
+				}
+
+				if($correct_2 && $selected_2)
+					$good = 1;
+
+				$answer_3 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_3']);
+				$correct_3 = $value['Question'][0]['ResultsQuestion']['correct'];
+				$selected_3 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
+
+				if($selected_3 == $value['Question'][0]['ResultsQuestion']['answer_3']){
+					$selected_3 = 1;
+				}else{
+					$selected_3 = 0;
+				}
+
+				if($correct_3 == $value['Question'][0]['ResultsQuestion']['answer_3']){
+					$correct_3 = 1;
+				}else{
+					$correct_3 = 0;
+				}
+
+				if($correct_3 && $selected_3)
+					$good = 1;
+
+
+				array_push($results,
+					array(
+						'level' => $value['Question'][0]['level_3d'],
+						'type' => $type['Type']['name'],
+						'category' => $category['Category']['name'],
+						'question' => $value['Question'][0]['question'],
+						'audio' => $value['Question'][0]['audio'],
+						'good' => $good,
+						'answers' => array(
+							array(
+								'answer' => $answer_0['Answer']['answer'],
+								'selected' => $selected_0,
+								'correct' => $correct_0
+							),
+							array(
+								'answer' => $answer_1['Answer']['answer'],
+								'selected' => $selected_1,
+								'correct' => $correct_1
+							),
+							array(
+								'answer' => $answer_2['Answer']['answer'],
+								'selected' => $selected_2,
+								'correct' => $correct_2
+							),
+							array(
+								'answer' => $answer_3['Answer']['answer'],
+								'selected' => $selected_3,
+								'correct' => $correct_3
+							)
+						)
+					)
+				);
 			}
-		} else {
-			$this->redirect();
+			$results = $this->group_assoc($results,'level');
+			$this->set('user',$user);
+			$percent = array();
+			$x = 0;
+			foreach ($results as $nivel) {
+				foreach ($nivel as $key => $value) {
+					if($value['good']==1)
+						$x++;
+				}
+				$point = ($x*100)/count($nivel);
+				array_push($percent, $point);
+				$x=0;
+			}
+			$this->set('percent',$percent);
+			$this->set('results',$results);
 		}
+	}
+
+	function group_assoc($array, $key) {
+    $return = array();
+    foreach($array as $v) {
+        $return[$v[$key]][] = $v;
+    }
+    return $return;
 	}
 	/**
 	 * Used to display detail of user by user

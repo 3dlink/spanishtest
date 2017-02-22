@@ -71,7 +71,7 @@ $(document).ready(function() {
 function next(){
 
 	if(!$('input:radio[name=correct]').is(':checked')){
-	  alert('Seleccione por favor la respuesta correcta');
+		toastr.error('Seleccione por favor la respuesta correcta');
 	  return false;
 	}else{
 		$('.prueba').removeClass('bounceInRight');
@@ -116,15 +116,8 @@ function next(){
 		}else{
 			//se envían los resultados
 			$.post(WEBROOT+'pages/modelDone',{data:quiz},function(data){
-
 			  if(data){
-			  	alert('Felicitaciones. Ha culminado la Prueba Modelo');
-			  	var user_group = '<?php echo $user_group; ?>';
-			  	if(user_group == 3){
-			  		window.location.href = WEBROOT+'dashTest';
-			  	}else{
-			  		window.location.href = WEBROOT+'dashboard';
-			  	}
+			  	window.location.href = WEBROOT+'doneTest/1';
 			  }
 			},'json');
 		}

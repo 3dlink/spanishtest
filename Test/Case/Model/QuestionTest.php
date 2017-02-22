@@ -18,7 +18,11 @@ class QuestionTest extends CakeTestCase {
 		'app.type',
 		'app.answer',
 		'app.user',
-		'app.questions_user'
+		'app.user_group',
+		'app.login_token',
+		'app.questions_user',
+		'app.result',
+		'app.results_question'
 	);
 
 /**

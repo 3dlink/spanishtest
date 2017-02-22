@@ -1,5 +1,4 @@
-<?php $user=$this->UserAuth->getUser(); ?>
-<?php $user_group=$this->UserAuth->getGroupId(); ?>   
+
 <style type="text/css">
 #next_btn{
 	display: block;
@@ -18,15 +17,20 @@
 
 		<section class="prueba">
 
-			<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
-			<br>
-			<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
-			<br>
-			<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
+			<?php if($user['User']['done']){ ?>
+				<p style="text-align:justify;">Ya usted presentó la prueba, comuníquese con su profesor para que le sea reasignada la prueba.</p>
+			<?php }else{ ?>
+				<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
+				<br>
+				<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
+				<br>
+				<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
+			<?php } ?>
 
 
-			<button id="next_btn" type="submit" onclick="window.location.href = WEBROOT+'test';" class="btn btn-primary">Hacer Prueba</button>
- 
+			<?php if(!$user['User']['done']){ ?>
+				<button id="next_btn" type="submit" onclick="if(confirm('Seguro que desea iniciar la prueba?'))window.location.href = WEBROOT+'test';" class="btn btn-primary">Hacer Prueba</button>
+ 			<?php } ?>
 		</section>	
 
 
@@ -35,6 +39,7 @@
 		<div id="ficha">
 			<h5><b>Participante: </b><?php echo $user['User']['first_name'].' '.$user['User']['last_name']; ?></h5>
 			<h5><b>Correo: </b><?php echo $user['User']['email'];?></h5>
+			<h5><b>Nivel actual: </b><?php echo $user['User']['actual_level'];?></h5>
 		</div>
 	</div>
 </div>

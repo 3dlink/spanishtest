@@ -7,6 +7,7 @@ App::uses('AppModel', 'Model');
  * @property Type $Type
  * @property Answer $Answer
  * @property User $User
+ * @property Result $Result
  */
 class Question extends AppModel {
 
@@ -68,6 +69,19 @@ class Question extends AppModel {
 			'joinTable' => 'questions_users',
 			'foreignKey' => 'question_id',
 			'associationForeignKey' => 'user_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+		),
+		'Result' => array(
+			'className' => 'Result',
+			'joinTable' => 'results_questions',
+			'foreignKey' => 'question_id',
+			'associationForeignKey' => 'result_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',

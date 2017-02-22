@@ -16,7 +16,7 @@ class QuestionFixture extends CakeTestFixture {
 		'category_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'type_id' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
 		'level_3d' => array('type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false),
-		'level_int' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
+		'level_int' => array('type' => 'integer', 'null' => true, 'default' => '0', 'unsigned' => false, 'comment' => '0 modelo 1 test'),
 		'audio' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)
@@ -36,7 +36,7 @@ class QuestionFixture extends CakeTestFixture {
 			'category_id' => 1,
 			'type_id' => 1,
 			'level_3d' => 1,
-			'level_int' => 'Lorem ipsum dolor sit amet',
+			'level_int' => 1,
 			'audio' => 'Lorem ipsum dolor sit amet'
 		),
 	);

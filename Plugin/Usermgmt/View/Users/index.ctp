@@ -36,6 +36,8 @@
                   <th>Nombre y Apellido</th>
                   <th>Prueba Asignada</th>
                   <th>Vencido</th>
+                  <th>Prueba realizada</th>
+                  <th>Nivel obtenido</th>
                   <th></th>
                 </th>
                 <?php foreach ($users as $row): ?>
@@ -44,6 +46,8 @@
 	                  <td><?php echo $row['User']['first_name'].' '.$row['User']['last_name']; ?></td>
                     <td><?php if($row['User']['asigned']){echo 'Si';}else{echo 'No';} ?></td>
                     <td><?php if($row['User']['expired']){echo 'Si';}else{echo 'No';} ?></td>
+                    <td><?php if($row['User']['done']){echo 'Si';}else{echo 'No';} ?></td>
+                    <td><?php if($row['User']['done']){echo $row['User']['actual_level'];}else{echo 'N/A';} ?></td>
 	                  <td>
 	                    <div style="display: block; width: 80px; margin: 0 auto;">
 	                      <a href="<?php echo $this->webroot.'editUser/'.$row['User']['id'];?>" class="menuTable" title="Editar participante">

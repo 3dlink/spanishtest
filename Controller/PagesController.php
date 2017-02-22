@@ -40,7 +40,7 @@ class PagesController extends AppController {
 
 	public $components = array('Paginator');
 
-	public $uses = array('Answer','Modeltest','Question');
+	public $uses = array('Answer','Modeltest','Result','Question','Usermgmt.User');
 /**
  * Displays a view
  *
@@ -226,6 +226,11 @@ class PagesController extends AppController {
 	}
 
 	public function pretest() {
+		$user=$this->UserAuth->getUser(); 
+		$user_group=$this->UserAuth->getGroupId();    
+		$user=$this->User->findById($user['User']['id']);
+
+		$this->set('user',$user);
 	}
 
 	public function test() {
@@ -375,27 +380,87 @@ class PagesController extends AppController {
 		}
 	}
 
+
+	public function doneTest($action=null){
+		$title = "";
+		$description = "";
+		if(!is_null($action)){
+			if($action==1){
+				$title = "PRUEBA MODELO";
+				$description = "Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos.";
+			}else{
+				$title = "PRUEBA DE ESPAÑOL";
+				$description = "Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos.";
+			}
+		}
+		$user=$this->UserAuth->getUser();	
+		$user=$this->User->findById($user['User']['id']);
+
+		$this->set('user',$user);
+
+		$this->set('title',$title);
+		$this->set('description',$description);
+	}
+
+
 	public function nextLevel() {
 		$this->autoRender = false;
 		if(isset($_POST['data'])){
 			$data = $_POST['data'];
-			$corrects = 0;
 
+			// debug($data);die;
+
+			$user=$this->UserAuth->getUser();
 			foreach ($data as $key => $value) {
-				$answer = $this->Answer->findById($value['answer']);
-				if($answer['Answer']['correct'] == 1)
-					$corrects++;
+				$result[$key] = array(
+					'user_id'=>$user['User']['id']
+				);
+				$correct = 0;
+
+				for ($i=0; $i < 4; $i++) { 
+					$answer = $this->Answer->findById($value['answers']['answer_'.$i]);
+					if($answer['Answer']['correct'] == 1){
+						$correct = $answer['Answer']['id'];
+					}
+				}
+				
+
+				
+
+				$level = $value['level'];
+				$result[$key]['Question']['Question'][$key] = array(
+					'question_id' => $value['question'],
+					'level' => $value['level'],
+					'answer_0' => $value['answers']['answer_0'],
+					'answer_1' => $value['answers']['answer_1'],
+					'answer_2' => $value['answers']['answer_2'],
+					'answer_3' => $value['answers']['answer_3'],
+					'answer_selected' => $value['answer'],
+					'correct' => $correct
+				);
 			}
 
-			$percent = ($corrects*100)/count($data);
+			if($this->Result->saveAll($result)){
 
-			if($percent >= 75){//pasó de nivel
-				return json_encode(1);
-			}else{
-				return json_encode(0);
+				$corrects = 0;
+				foreach ($data as $key => $value) {
+					$answer = $this->Answer->findById($value['answer']);
+					if($answer['Answer']['correct'] == 1)
+						$corrects++;
+				}
+
+				$percent = ($corrects*100)/count($data);
+
+				if($percent >= 75){//pasó de nivel
+					$this->User->id = $user['User']['id'];
+					$this->User->saveField('actual_level', $level);
+					$this->User->saveField('done', 1);
+						return json_encode(1);
+				}else{
+					return json_encode(0);
+				}
+
 			}
-
-
 		}
 	}
 
@@ -404,6 +469,7 @@ class PagesController extends AppController {
 		$new_answers = array();
 		foreach ($answers as $key => $value) {
 			if($value['correct']==1){
+				$value['answer']=$value['answer']." (correcta)";
 				array_push($new_answers, $value);
 				unset($answers[$key]);
 			}

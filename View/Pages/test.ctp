@@ -207,13 +207,13 @@ $('.active').click(function(event) {
 function next(){
 
 	if(!$('input:radio[name=correct]').is(':checked')){
-	  alert('Seleccione por favor la respuesta correcta');
+		toastr.error('Seleccione por favor la respuesta correcta');
 	  return false;
 	}else{
 		$('.prueba_').removeClass('bounceInRight');
 
 		//guardo el resultado
-		quiz[q] = {'question':$("#question_id").val(), 'answer':$("input:checked").val()};
+		quiz[q] = {'question':$("#question_id").val(), 'answer':$("input:checked").val(),'level':current_level, 'answers':{'answer_0':$("#answercheck_0").val(),'answer_1':$("#answercheck_1").val(),'answer_2':$("#answercheck_2").val(),'answer_3':$("#answercheck_3").val()}};
 
 		q++;
 		var counter=q+1;
@@ -225,15 +225,32 @@ function next(){
 			if(counter>total){//pasé de nivel
 				//verificar si pasó o no de nivel
 				if(current_level==8){ //terminó la prueba
-					$.post(WEBROOT+'pages/testDone',{data:quiz},function(data){
+					$.post(WEBROOT+'pages/nextLevel',{data:quiz},function(data){
 					  if(data){
-					  	alert('Felicitaciones. Ha culminado la Prueba Final');
-					  	var user_group = '<?php echo $user_group; ?>';
-					  	if(user_group == 3){
-					  		window.location.href = WEBROOT+'dashTest';
-					  	}else{
-					  		window.location.href = WEBROOT+'dashboard';
-					  	}
+			  			window.location.href = WEBROOT+'doneTest/2';
+					  }else{
+					  	//no pasaste
+					  	proximo = parseInt(current_level);
+					  	for (var i = proximo; i <= 8; i++) {
+					  		$('#level_'+i).removeClass('active');
+					  		$('#level_'+i).addClass('no-active');
+					  	};
+							$('#level_'+current_level+' > .progreso').width('100%');
+							$('#level_'+current_level+' > .progreso').css('background', '#d83030');
+
+							toastr.error('Lamentablemente no ha aprobado el nivel.');
+
+							var free = 0;
+							for (var i = 1; i < 9; i++) {
+								if($("#level_"+i).hasClass('active')){
+									free++;
+								}
+							};
+							if(free == 0){
+			  				window.location.href = WEBROOT+'doneTest/2';
+							}
+
+					  	return;
 					  }
 					},'json');
 
@@ -241,19 +258,21 @@ function next(){
 
 					$.post(WEBROOT+'pages/nextLevel',{data:quiz},function(data){
 					  if(data){
-							alert('Felicitaciones, ha pasado de nivel');
-					  	$('#level_'+current_level+' > .progreso').width('100%');
-					  	$('#level_'+current_level).removeClass('level_active');
-					  	$('#level_'+current_level).removeClass('active');
-				  		$('#level_'+current_level).addClass('pase');
+							toastr.success('Felicitaciones, ha pasado de nivel');
+					  	for (var i = 1; i <= current_level; i++) {
+						  	$('#level_'+i+' > .progreso').width('100%');
+						  	$('#level_'+i).removeClass('level_active');
+						  	$('#level_'+i).removeClass('active');
+					  		$('#level_'+i).addClass('pase');
+					  	};
+
 							q=0;
 					    counter=q+1;
 							current_level++;
-					  	$('#level_'+current_level).addClass('level_active');
-				  		$('#level_'+current_level).removeClass('no-active');
-				  		$('#level_'+current_level).addClass('active');
-
-					  	nexQuestion(q,current_level);
+						  	$('#level_'+current_level).addClass('level_active');
+					  		$('#level_'+current_level).removeClass('no-active');
+					  		$('#level_'+current_level).addClass('active');
+					  	nexQuestion(q,current_level,counter);
 
 					  }else{
 					  	//no pasaste
@@ -264,13 +283,25 @@ function next(){
 					  	};
 							$('#level_'+current_level+' > .progreso').width('100%');
 							$('#level_'+current_level+' > .progreso').css('background', '#d83030');
-					  	alert('no pasaste');
+
+							toastr.error('Lamentablemente no ha aprobado el nivel.');
+
+							var free = 0;
+							for (var i = 1; i < 9; i++) {
+								if($("#level_"+i).hasClass('active')){
+									free++;
+								}
+							};
+							if(free == 0){
+			  				window.location.href = WEBROOT+'doneTest/2';
+							}
+
 					  	return;
 					  }
 					},'json');
 				}
 			}else{
-				nexQuestion(q,current_level);
+				nexQuestion(q,current_level,counter);
 				if(counter==total && current_level==8){
 					$('#next_btn').html('Terminar');
 				}
@@ -279,9 +310,10 @@ function next(){
 	}
 }
 
-function nexQuestion(id,curr){
+function nexQuestion(id,curr,count){
 	q = id;
 	current_level = curr;
+	counter = count;
 	$.post(WEBROOT+'pages/nextQuestionTest',{data:{id:q,level:(parseInt(current_level)-1)}},function(data){
 	  if(data){
 	  	$('.pregunta').html(data['pregunta']);
@@ -307,6 +339,7 @@ function nexQuestion(id,curr){
 	  	percent=(counter-1)*100/total;
 
 	  	$('#level_'+data['nivel']+' > .progreso').width(percent+'%');
+			$('#level_'+data['nivel']+' > .progreso').css('background', '#5bbf5b');
 
 			if(data['tipo_id'] == 2){
 				$('.audio-content').html('');
