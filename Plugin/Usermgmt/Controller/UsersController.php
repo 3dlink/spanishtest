@@ -26,7 +26,7 @@ class UsersController extends UserMgmtAppController {
 	 *
 	 * @var array
 	 */
-	public $uses = array('Usermgmt.User', 'Answer', 'Category', 'Type','Usermgmt.UserGroup', 'Usermgmt.LoginToken' );
+	public $uses = array('Usermgmt.User', 'Answer', 'Category', 'Result', 'Type','Usermgmt.UserGroup', 'Usermgmt.LoginToken' );
 	public $components = array('Paginator');
 	/**
 	 * Called before the controller action.  You can use this method to configure and customize components
@@ -207,51 +207,55 @@ class UsersController extends UserMgmtAppController {
 				array_push($results,
 					array(
 						'level' => $value['Question'][0]['level_3d'],
-						'type' => $type['Type']['name'],
-						'category' => $category['Category']['name'],
-						'question' => $value['Question'][0]['question'],
-						'audio' => $value['Question'][0]['audio'],
-						'good' => $good,
-						'answers' => array(
-							array(
-								'answer' => $answer_0['Answer']['answer'],
-								'selected' => $selected_0,
-								'correct' => $correct_0
-							),
-							array(
-								'answer' => $answer_1['Answer']['answer'],
-								'selected' => $selected_1,
-								'correct' => $correct_1
-							),
-							array(
-								'answer' => $answer_2['Answer']['answer'],
-								'selected' => $selected_2,
-								'correct' => $correct_2
-							),
-							array(
-								'answer' => $answer_3['Answer']['answer'],
-								'selected' => $selected_3,
-								'correct' => $correct_3
-							)
+						'type' => $type['Type']['id'],
+						'good' => $good
 						)
-					)
 				);
 			}
 			$results = $this->group_assoc($results,'level');
 			$this->set('user',$user);
 			$percent = array();
-			$x = 0;
+			$g = 0;
+			$tl = 0;
+			$ta = 0;
+			$gl = 0;
+			$ga = 0;
+			$k = 1;
+			$statics = array();
+
 			foreach ($results as $nivel) {
 				foreach ($nivel as $key => $value) {
-					if($value['good']==1)
-						$x++;
+					if($value['type']==1){
+						$tl++;
+						if($value['good']==1){
+							$g++;
+							$gl++;
+						}
+					}else{
+						$ta++;
+						if($value['good']==1){
+							$g++;
+							$ga++;
+						}
+					}
 				}
-				$point = ($x*100)/count($nivel);
-				array_push($percent, $point);
-				$x=0;
+				$point = ($g*100)/$_SESSION['count'][$k];
+				array_push($statics, array(
+					'auditiva' => $ga,
+					'lectora' => $gl,
+					'percent' => $point,
+					'total_lectora' => $tl,
+					'total_auditiva' => $ta
+				));
+				$g = 0;
+				$tl = 0;
+				$ta = 0;
+				$gl = 0;
+				$ga = 0;
+				$k++;
 			}
-			$this->set('percent',$percent);
-			$this->set('results',$results);
+
+			$this->set('statics',$statics);
 		}
 	}
 
@@ -356,8 +360,12 @@ class UsersController extends UserMgmtAppController {
 
 
 					if($groupid != 3){
+		$_SESSION['count'] = array(4,4,4,4,4,4,4,4);
+		// $_SESSION['count'] = array(30,30,30,30,20,20,20,20);
 						$this->redirect('/dashboard');
 					}else{
+		$_SESSION['count'] = array(4,4,4,4,4,4,4,4);
+		// $_SESSION['count'] = array(30,30,30,30,20,20,20,20);
 						$this->redirect('/dashTest');
 					}
 				} else {
@@ -552,7 +560,50 @@ class UsersController extends UserMgmtAppController {
 
 		$mensaje=
 		"Bienvenido ".$part['User']['first_name'].", para realizar la prueba de español debe ingresar en: ".$link." <br><br><br>"
-		."Deberá ingresar con la contraseña: <b>".$token."</b><br>"
+		."Deberá ingresar con la contraseña: <b>".$token."</b> y su correo electrónico<br>"
+		."<b>La contraseña vencerá en 7 días.</b><br><br><br>"
+		."<b>Gracias,</b> <br>"
+		."<b>Spanish Test</b>";
+		$this->__enviar_correo($from, $to, $subject, $mensaje);
+
+			if($this->User->save($user)){
+				$this->Session->setFlash('La prueba ha sido activada para el participante '.$part['User']['first_name'].'.', 'default', array('class' => 'success_message'));
+				$this->redirect('/allUsers');
+			}else{
+				$this->Session->setFlash('Ha ocurrido un error, inténtelo nuevamente.', 'default', array('class' => 'error_message'));
+				$this->redirect('/allUsers');
+			}
+
+	}
+
+
+	public function reasign ($id=null){
+		$this->autoRender = false;
+
+		$this->Result->deleteAll(array('Result.user_id' => $id), true);
+
+
+		$user['User']['id'] = $id;
+		$user['User']['asigned'] = 1;
+		$user['User']['expired'] = 0;
+		$user['User']['done'] = 0;
+		$date = date('Y-m-j h:i:s');
+		$newdate = strtotime ( '+7 day' , strtotime ( $date ) ) ;
+		$newdate = date ( 'Y-m-j h:i:s' , $newdate );
+		$user['User']['due_date'] = $newdate;
+
+		// Enviar correo
+		$part = $this->User->findById($id);
+		$token = $part['User']['token'];
+
+		$from = 'info@3dlink.com.ve';
+		$to = $part['User']['email'];
+		$subject=  "Spanish Test: Se le ha reasignado una prueba de español";
+		$link = Router::url("/",true);
+
+		$mensaje=
+		"Bienvenido ".$part['User']['first_name'].", para realizar la prueba de español debe ingresar en: ".$link." <br><br><br>"
+		."Deberá ingresar con la contraseña: <b>".$token."</b> y su correo electrónico<br>"
 		."<b>La contraseña vencerá en 7 días.</b><br><br><br>"
 		."<b>Gracias,</b> <br>"
 		."<b>Spanish Test</b>";

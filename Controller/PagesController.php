@@ -241,13 +241,16 @@ class PagesController extends AppController {
 			$questionsByLevel_Auditiva[$i] = $this->Question->find('all',array('conditions' => array('Question.level_3d' => ($i+1),'Question.type_id=2')));
 		}
 
+		// $count = array(30,30,30,30,20,20,20,20);
+		$count = array(4,4,4,4,4,4,4,4);
+
 		for ($i=0; $i < 8; $i++) {
 
-			$count = 4; //30,30,30,30,20,20,20,20
+			// $count = 4;
 
 			$div = count($questionsByLevel_Lectura[$i]);
-			$rand_1 = array_rand($questionsByLevel_Lectura[$i],$count/2);
-			$rand_2 = array_rand($questionsByLevel_Auditiva[$i],$count/2);
+			$rand_1 = array_rand($questionsByLevel_Lectura[$i],$count[$i]/2);
+			$rand_2 = array_rand($questionsByLevel_Auditiva[$i],$count[$i]/2);
 			foreach ($rand_2 as $key => $value) {
 				$rand_2[$key] = $value + $div;
 			}
@@ -304,7 +307,7 @@ class PagesController extends AppController {
 		);
 		// debug($question_);die;
 
-		$this->set('count', $count);
+		$this->set('count', $count[0]);
 		$this->set('question', $question_);
 
 	}
@@ -388,9 +391,12 @@ class PagesController extends AppController {
 			if($action==1){
 				$title = "PRUEBA MODELO";
 				$description = "Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos.";
-			}else{
+			}elseif($action==2){
 				$title = "PRUEBA DE ESPAÑOL";
 				$description = "Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos.";
+			}else{
+				$title = "PRUEBA DE ESPAÑOL";
+				$description = "Tiempo excedido haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos.";
 			}
 		}
 		$user=$this->UserAuth->getUser();	
@@ -424,9 +430,6 @@ class PagesController extends AppController {
 					}
 				}
 				
-
-				
-
 				$level = $value['level'];
 				$result[$key]['Question']['Question'][$key] = array(
 					'question_id' => $value['question'],
@@ -440,28 +443,34 @@ class PagesController extends AppController {
 				);
 			}
 
-			if($this->Result->saveAll($result)){
 
-				$corrects = 0;
+			$corrects = 0;
 				foreach ($data as $key => $value) {
 					$answer = $this->Answer->findById($value['answer']);
 					if($answer['Answer']['correct'] == 1)
 						$corrects++;
 				}
 
-				$percent = ($corrects*100)/count($data);
+				$percent = ($corrects*100)/$_SESSION['count'][($level-1)];
+
+				$this->User->id = $user['User']['id'];
+				$veces = $user['User']['presents'];
+				$veces++;
+				$this->User->saveField('done', 1);
+				$this->User->saveField('presents', $veces);
 
 				if($percent >= 75){//pasó de nivel
-					$this->User->id = $user['User']['id'];
-					$this->User->saveField('actual_level', $level);
-					$this->User->saveField('done', 1);
+					if($this->Result->saveAll($result)){
+						$this->User->saveField('actual_level', $level);
 						return json_encode(1);
+					}else{
+						return json_encode(0);
+					}
 				}else{
 					return json_encode(0);
 				}
 
 			}
-		}
 	}
 
 	private function __answersRandom($answers) {
@@ -469,7 +478,7 @@ class PagesController extends AppController {
 		$new_answers = array();
 		foreach ($answers as $key => $value) {
 			if($value['correct']==1){
-				$value['answer']=$value['answer']." (correcta)";
+				$value['answer']=$value['answer'].' (correcta)';
 				array_push($new_answers, $value);
 				unset($answers[$key]);
 			}
@@ -515,6 +524,24 @@ class PagesController extends AppController {
 			return json_encode($question);
 		}
 	}
+
+	// public function deleteLevel() {
+	// 	$this->autoRender = false;
+	// 	if(isset($_POST['level'])){
+	// 		$results = $this->find('all', array(
+ //        'joins' => array(
+ //          array('table' => 'results_questions',
+ //            'alias' => 'ResultQuestion',
+ //            'type' => 'INNER',
+ //            'conditions' => array(
+ //              'ResultQuestion.level' => $_POST['level']
+ //            )
+ //          )
+ //        )
+ //    	));
+ //    	debug($results);die;
+	// 	}
+	// }
 
 	public function nextQuestionTest() {
 		$this->autoRender = false;

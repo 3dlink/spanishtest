@@ -53,13 +53,10 @@
 </div>
 
 <script type="text/javascript">
-
 var type = '<?php echo $question["tipo_id"]; ?>';
 if(type == 2){
   $('.audio-content').ttwMusicPlayer([{mp3:'<?php echo $this->webroot."files/".$question["audio"]; ?>'}]);
 }
-
-
 var q=0;
 var quiz = new Object();
 var total = '<?php echo $count; ?>';

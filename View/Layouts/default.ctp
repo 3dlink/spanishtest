@@ -23,6 +23,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version());
     echo $this->Html->css('toast.min');
 
     echo $this->Html->script('jquery-2.2.0.min');
+    echo $this->Html->script('jquery.countdown.min');
     echo $this->Html->script('jquery.jplayer.min');
     echo $this->Html->script('ttw-music-player-min');
     echo $this->Html->script('bootstrap.min');

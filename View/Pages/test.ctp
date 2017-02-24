@@ -82,6 +82,14 @@
 .class_name{
 	width: 35%;
 }
+
+#clock{
+	float: right;
+	margin-top: 100px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #006cb8;
+}
 </style>
 
 <div class="row">
@@ -168,6 +176,7 @@
 			<h5><b>Participante: </b><?php echo $user['User']['first_name'].' '.$user['User']['last_name']; ?></h5>
 			<h5><b>Correo: </b><?php echo $user['User']['email'];?></h5>
 		</div>
+		<div id="clock"></div>
 	</div>
 </div>
 
@@ -185,6 +194,19 @@ var total = '<?php echo $count; ?>';
 var current_level = 1;
 
 $(document).ready(function() {
+	// var time = new Date().getTime() + 10000;
+	var time = new Date().getTime() + 6300000; //1:45
+	$('#clock').countdown(time, {elapse: true})
+	.on('update.countdown', function(event) {
+	  var $this = $(this);
+	  if (event.elapsed) {
+	  	$('#clock').countdown('stop'); 
+	  	terminar();
+	  } else {
+	    $this.html(event.strftime('%H:%M:%S'));
+	  }
+	});
+
 	$('.prueba_').addClass('bounceInRight');
 });
 
@@ -349,6 +371,19 @@ function nexQuestion(id,curr,count){
 			}
 	  }
 	},'json');
+}
+
+function terminar(){
+	//guardo el resultado
+
+	if($('input:radio[name=correct]').is(':checked')){
+		quiz[q] = {'question':$("#question_id").val(), 'answer':$("input:checked").val(),'level':current_level, 'answers':{'answer_0':$("#answercheck_0").val(),'answer_1':$("#answercheck_1").val(),'answer_2':$("#answercheck_2").val(),'answer_3':$("#answercheck_3").val()}};
+	}
+
+	$.post(WEBROOT+'pages/nextLevel',{data:quiz},function(data){
+		window.location.href = WEBROOT+'doneTest/3';
+	},'json');
+
 }
 
 </script>

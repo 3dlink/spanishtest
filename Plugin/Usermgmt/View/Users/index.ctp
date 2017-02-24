@@ -36,7 +36,7 @@
                   <th>Nombre y Apellido</th>
                   <th>Prueba Asignada</th>
                   <th>Vencido</th>
-                  <th>Prueba realizada</th>
+                  <th>Veces</th>
                   <th>Nivel obtenido</th>
                   <th></th>
                 </th>
@@ -46,7 +46,7 @@
 	                  <td><?php echo $row['User']['first_name'].' '.$row['User']['last_name']; ?></td>
                     <td><?php if($row['User']['asigned']){echo 'Si';}else{echo 'No';} ?></td>
                     <td><?php if($row['User']['expired']){echo 'Si';}else{echo 'No';} ?></td>
-                    <td><?php if($row['User']['done']){echo 'Si';}else{echo 'No';} ?></td>
+                    <td><?php echo $row['User']['presents']; ?></td>
                     <td><?php if($row['User']['done']){echo $row['User']['actual_level'];}else{echo 'N/A';} ?></td>
 	                  <td>
 	                    <div style="display: block; width: 80px; margin: 0 auto;">
@@ -67,9 +67,11 @@
 	                        <span class="glyphicon glyphicon-eye-open"></span>
 	                      </a>
                         <?php else: ?>
+                        <?php if($row['User']['presents']==0 && (!$row['User']['asigned'])){ ?>
                         <a href="<?php echo $this->webroot.'usermgmt/users/asign/'.$row['User']['id'];?>" onclick="if (confirm(&quot;¿Seguro que desea asignarle la prueba a <?php echo $row['User']['first_name']; ?>?&quot;)) { return true; } return false;" class="menuTable" title="Activar prueba">
                           <span class="glyphicon glyphicon-share-alt"></span>
                         </a>
+                        <?php } ?>
                         <?php endif;?>
 	                    </div>                  
 	                  </td>

@@ -101,9 +101,9 @@ class EmailConfig {
     );*/
 
 	public $_temp = array(
-		'host' => '3dlink.com.ve',
-		'port' => 25,
-		'username' => 'info@3dlink.com.ve',
+		'host' => '3dlinkweb.com',
+		'port' => 26,
+		'username' => 'info@3dlinkweb.com',
 		'password' => 'london.123',
 		'transport' => 'Smtp'
 	);
