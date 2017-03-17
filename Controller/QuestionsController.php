@@ -26,29 +26,26 @@ class QuestionsController extends AppController {
 		$level = "";
 		$type = "";
 
-		if(isset($this->request->query['question']) || isset($this->request->query['level']) || isset($this->request->query['type'])){
+		$this->Paginator->settings = array(
+					'limit' => 10
+				);
+
+		if(!empty($this->request->query['question']) || !empty($this->request->query['level']) || !empty($this->request->query['type'])){
 			$question = $this->request->query['question'];
 			$level = $this->request->query['level'];
 			$type = $this->request->query['type'];
 
-			// if(!empty($question)){
-				$this->Paginator->settings = array(
-					'conditions' => array(
-        		'Question.question LIKE "%'.$question.'%"',
-        		'Question.type_id LIKE "%'.$type.'%"',
-        		'Question.level_3d LIKE "%'.$level.'%"'
-  				)
-				);
-			// }
+			$this->Paginator->settings = array(
+				'conditions'=>array(
+						'Question.question LIKE "%'.$question.'%"',
+						'Question.type_id LIKE "%'.$type.'%"',
+						'Question.level_3d LIKE "%'.$level.'%"'
+					),
+				'order' => 'Question.level_3d ASC',
+				'limit' => 10
+			);
 
 		}
-		$this->Question->recursive = 0;
-		// $this->Paginator->settings = array(
-  //     'order' => array('Question.level_3d DESC')
-  // 	);
-		$this->Paginator->settings = array(
-			'limit' => 10,
-		);
 		$this->set('question', $question);
 		$this->set('level', $level);
 		$this->set('type', $type);

@@ -26,7 +26,7 @@
       		<div class="col-md-12">
       			<div class="form-group">
 							<label>Pregunta: </label>
-              <p><?php echo nl2br($question['Question']['question'])?></p>
+              <p style="text-align:justify;"><?php echo nl2br($question['Question']['question'])?></p>
 						</div>
       		</div>
       		<div style="clear:both;"></div>

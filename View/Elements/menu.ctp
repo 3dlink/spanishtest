@@ -116,7 +116,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Optiones<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones<span class="caret"></span></a>
               <?php if($this->UserAuth->getGroupId()): ?>
                 <ul class="dropdown-menu">
                   <!-- <li><a href="<?php echo $this->webroot; ?>" target="_blank">Perfil</a></li> -->

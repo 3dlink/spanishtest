@@ -152,7 +152,7 @@
 		<section class="prueba_ animated">
 
 				<p class="pregunta">
-					<?php echo $question['pregunta']; ?>
+					<?php echo nl2br($question['pregunta']); ?>
 					<div class="audio-content"></div>
 				</p>
 

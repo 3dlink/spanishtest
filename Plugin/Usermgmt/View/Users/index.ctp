@@ -53,15 +53,9 @@
 	                      <a href="<?php echo $this->webroot.'editUser/'.$row['User']['id'];?>" class="menuTable" title="Editar participante">
 	                        <span class="glyphicon glyphicon-pencil"></span>
 	                      </a>
-	                      <?php if ($row['User']['active']==0): ?>
-		                      <a href="<?php echo $this->webroot.'usermgmt/users/makeActiveInactive/'.$row['User']['id'].'/1';?>" class="menuTable" title="Activar participante">
-		                        <span class="glyphicon glyphicon-ok"></span>
-		                      </a>
-	                      <?php else: ?>
-		                      <a href="<?php echo $this->webroot.'usermgmt/users/makeActiveInactive/'.$row['User']['id'].'/0';?>" class="menuTable" title="Desactivar participante">
-		                        <span class="glyphicon glyphicon-remove"></span>
-		                      </a>
-	                      <?php endif;?>
+	                      <a href="<?php echo $this->webroot.'usermgmt/users/deleteUser/'.$row['User']['id'];?>" onclick="if (confirm(&quot;¿Seguro que desea eliminar el participante: <?php echo $row['User']['first_name']; ?>?&quot;)) { return true; } return false;" class="menuTable" class="menuTable" title="Eliminar participante">
+	                        <span class="glyphicon glyphicon-remove"></span>
+	                      </a>
                         <?php if ($row['User']['done']==1): ?>
 	                      <a href="<?php echo $this->webroot.'viewUser/'.$row['User']['id'];?>" class="menuTable" title="Ver resultados">
 	                        <span class="glyphicon glyphicon-eye-open"></span>

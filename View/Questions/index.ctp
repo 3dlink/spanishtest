@@ -42,7 +42,7 @@
 	                      <button class="btn btn-default" alt="Buscar" type="submit"><span class="glyphicon glyphicon-search"></span></button>
 	                    </span>
                       <span class="input-group-btn">
-                        <button class="btn btn-default" alt="Mostrar Todos" onclick="window.location.href=WEBROOT+'questions';"><span class="glyphicon glyphicon-align-justify"></span></button>
+                        <div class="btn btn-default" id="todos"><span class="glyphicon glyphicon-align-justify"></span></div>
                       </span>
 	                  </div>  
 									</form>            
@@ -66,7 +66,7 @@
                 </th>
 
                 <?php foreach ($questions as $item): ?>
-					<tr>
+					         <tr>
 	                    <td style="width: 500px;"><?php echo h($item['Question']['question']); ?>&nbsp;</td>
                       <td><?php echo h($item['Question']['level_3d']); ?>&nbsp;</td>
                       <td><?php echo h($item['Type']['name']); ?>&nbsp;</td>
@@ -82,7 +82,7 @@
 	                      </a>
 		                    </div>               
 		                </td>
-					</tr>
+					       </tr>
 								<?php endforeach; ?>
               </table>
             </div> 
@@ -100,3 +100,11 @@
 </ul> 
 
 </div>	
+
+<script type="text/javascript">
+
+$('#todos').click(function(event) {
+  window.location.href=WEBROOT+'questions';
+});
+
+</script>

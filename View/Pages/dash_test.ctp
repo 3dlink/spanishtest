@@ -33,5 +33,5 @@
   <img src="<?php echo $this->webroot; ?>img/logo.png">
 </div>
 
-<h1>BIENVENIDOS</h1>
-<p>Aquí debería haber una breve descripción de las pruebas (quizás en chino)</p>
+<h1>Bienvenido a su examen de ubicación de nivel del idioma Español</h1>
+<h1>欢迎进入您的西班牙语水平测试</h1>

@@ -478,7 +478,7 @@ class PagesController extends AppController {
 		$new_answers = array();
 		foreach ($answers as $key => $value) {
 			if($value['correct']==1){
-				$value['answer']=$value['answer'].' (correcta)';
+				$value['answer']=$value['answer'];
 				array_push($new_answers, $value);
 				unset($answers[$key]);
 			}

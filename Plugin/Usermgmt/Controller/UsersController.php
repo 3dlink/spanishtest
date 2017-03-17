@@ -629,36 +629,19 @@ class UsersController extends UserMgmtAppController {
 	 */
 	public function editUser($userId=null) {
 		if (!empty($userId)) {
-			$userGroups=$this->UserGroup->getGroups();
-			if ($this->request -> isPut()) {
-				$this->User->set($this->data);
-				if ($this->User->RegisterValidate()) {
-					$this->request->data['User']['username']=$this->request->data['User']['email'];
-					//debug($this->request->data);
+			if ($this->request -> isPost()) {
 					if($this->User->save($this->request->data)){
-						$_SESSION["avatar"]=$this->request->data['User']['avatar'];
-						$this->Session->setFlash('El usuario se actualizó con éxito.', 'default', array('class' => 'success_message'));
-						$this->redirect('/');
+						$this->Session->setFlash('El participante se actualizó con éxito.', 'default', array('class' => 'success_message'));
+						$this->redirect('/allUsers');
 					}else{
-						$this->Session->setFlash('Error actualizando al usuario, por favor intente de nuevo.', 'default', array('class' => 'error_message'));
+						$this->Session->setFlash('Error actualizando al participante, por favor intente de nuevo.', 'default', array('class' => 'error_message'));
 					}
-
-				}
 			} else {
-				$this->request->data=null;
-				$user_=$this->UserAuth->getUser();
-				$user = $this->User->read(null, $userId);
-				if(isset($user['User']['id'])){
-					if($user['User']['id'] == $user_['User']['id'])
-					$this->request->data = $user;
-					else
-						$this->redirect('/editUser/'.$user_['User']['id']);
-				}else{
-						$this->redirect('/editUser/'.$user_['User']['id']);
-				}
+				$user = $this->User->findById($userId);
+				$this->request->data = $user;
 			}
 		} else {
-			$this->redirect('/');
+			$this->redirect('/allUsers');
 		}
 	}
 	/**
@@ -670,12 +653,10 @@ class UsersController extends UserMgmtAppController {
 	 */
 	public function deleteUser($userId = null) {
 		if (!empty($userId)) {
-			if ($this->request -> isPost()) {
-				if ($this->User->delete($userId, false)) {
-					$this->LoginToken->deleteAll(array('LoginToken.user_id'=>$userId), false);
-					$this->Session->setFlash(__('Usuario se ha eliminado con éxito'));
+				$this->User->id = $userId;
+				if ($this->User->delete()) {
+					$this->Session->setFlash('Participante eliminado con éxito', 'default', array('class' => 'success_message'));
 				}
-			}
 			$this->redirect('/allUsers');
 		} else {
 			$this->redirect('/allUsers');
