@@ -1,0 +1,160 @@
+2017-03-17 17:56:08 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [1049] Unknown database \'spanish_test\'',
+  'enabled' => true,
+)
+Request URL: /spanishtest/
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\ConnectionManager.php(105): DboSource->__construct(Array)
+#2 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Model.php(3524): ConnectionManager::getDataSource('default')
+#3 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Model.php(1136): Model->setDataSource('default')
+#4 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Model.php(3551): Model->setSource('users')
+#5 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Model.php(1369): Model->getDataSource()
+#6 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\Helper\FormHelper.php(215): Model->schema()
+#7 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\Helper\FormHelper.php(468): FormHelper->_introspectModel('User', 'fields')
+#8 C:\xampp\htdocs\spanishtest\Plugin\Usermgmt\View\Users\login.ctp(9): FormHelper->create('User', Array)
+#9 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\View.php(948): include('C:\\xampp\\htdocs...')
+#10 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\View.php(910): View->_evaluate('C:\\xampp\\htdocs...', Array)
+#11 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\View.php(471): View->_render('C:\\xampp\\htdocs...')
+#12 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#13 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#14 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#15 C:\xampp\htdocs\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#16 {main}
+2017-03-17 18:29:42 Error: [MissingConnectionException] Database connection "Mysql" is missing, or could not be created.
+Exception Attributes: array (
+  'class' => 'Mysql',
+  'message' => 'SQLSTATE[HY000] [1049] Unknown database \'spanish_test\'',
+  'enabled' => true,
+)
+Request URL: /spanishtest/
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\ConnectionManager.php(105): DboSource->__construct(Array)
+#2 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Model.php(3524): ConnectionManager::getDataSource('default')
+#3 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Model.php(1136): Model->setDataSource('default')
+#4 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Model.php(3551): Model->setSource('users')
+#5 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Model\Model.php(1369): Model->getDataSource()
+#6 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\Helper\FormHelper.php(215): Model->schema()
+#7 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\Helper\FormHelper.php(468): FormHelper->_introspectModel('User', 'fields')
+#8 C:\xampp\htdocs\spanishtest\Plugin\Usermgmt\View\Users\login.ctp(9): FormHelper->create('User', Array)
+#9 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\View.php(948): include('C:\\xampp\\htdocs...')
+#10 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\View.php(910): View->_evaluate('C:\\xampp\\htdocs...', Array)
+#11 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\View\View.php(471): View->_render('C:\\xampp\\htdocs...')
+#12 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Controller\Controller.php(954): View->render(NULL, NULL)
+#13 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Routing\Dispatcher.php(198): Controller->render()
+#14 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#15 C:\xampp\htdocs\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#16 {main}
+2017-03-17 18:44:00 Error: level: 7, id: 0
+2017-03-17 18:44:00 Error: pasó
+2017-03-17 18:54:45 Error: level: 7, id: 0
+2017-03-17 18:54:45 Error: pasó
+2017-03-17 18:56:50 Error: level: 7, id: 0
+2017-03-17 18:56:50 Error: pasó
+2017-03-17 19:00:56 Error: Fatal Error (4): syntax error, unexpected ')', expecting ',' or ';' in [C:\xampp\htdocs\spanishtest\View\Pages\test.ctp, line 155]
+2017-03-17 19:00:57 Error: [FatalErrorException] syntax error, unexpected ')', expecting ',' or ';'
+Request URL: /spanishtest/test/
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 155)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 155, Array)
+#2 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'C:\\xampp\\htdocs...', 155, Array)
+#3 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-17 19:01:13 Error: level: 7, id: 0
+2017-03-17 19:01:13 Error: pasó
+2017-03-17 19:03:09 Error: level: 7, id: 0
+2017-03-17 19:03:09 Error: pasó
+2017-03-17 19:08:20 Error: level: 7, id: 0
+2017-03-17 19:08:20 Error: pasó
+2017-03-17 19:08:27 Error: level: 3, id: 0
+2017-03-17 19:08:27 Error: pasó
+2017-03-17 19:10:02 Error: level: 7, id: 0
+2017-03-17 19:10:02 Error: pasó
+2017-03-17 19:10:45 Error: level: 5, id: 0
+2017-03-17 19:10:45 Error: pasó
+2017-03-17 19:11:15 Error: level: 5, id: 0
+2017-03-17 19:11:15 Error: pasó
+2017-03-17 19:11:56 Error: level: 5, id: 0
+2017-03-17 19:11:56 Error: pasó
+2017-03-17 19:12:00 Error: level: 7, id: 0
+2017-03-17 19:12:00 Error: pasó
+2017-03-17 19:12:35 Error: level: 7, id: 0
+2017-03-17 19:12:35 Error: pasó
+2017-03-17 19:13:23 Error: Fatal Error (1): Call to undefined function ln2br() in [C:\xampp\htdocs\spanishtest\View\Pages\test.ctp, line 155]
+2017-03-17 19:13:23 Error: [FatalErrorException] Call to undefined function ln2br()
+Request URL: /spanishtest/test/
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 155)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 155, Array)
+#2 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 155, Array)
+#3 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-17 19:13:39 Error: Fatal Error (1): Call to undefined function l2br() in [C:\xampp\htdocs\spanishtest\View\Pages\test.ctp, line 155]
+2017-03-17 19:13:39 Error: [FatalErrorException] Call to undefined function l2br()
+Request URL: /spanishtest/test/
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 155)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 155, Array)
+#2 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'C:\\xampp\\htdocs...', 155, Array)
+#3 C:\xampp\htdocs\spanishtest\cakephp\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2017-03-17 19:14:34 Error: level: 7, id: 0
+2017-03-17 19:14:34 Error: pasó
+2017-03-17 19:16:12 Error: level: 7, id: 0
+2017-03-17 19:16:12 Error: pasó
+2017-03-17 19:16:27 Error: level: 0, id: 0
+2017-03-17 19:16:27 Error: pasó
+2017-03-17 19:17:45 Error: level: 0, id: 1
+2017-03-17 19:17:45 Error: pasó
+2017-03-17 19:18:00 Error: level: 0, id: 2
+2017-03-17 19:18:00 Error: pasó
+2017-03-17 19:18:00 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /spanishtest/files/audio14894453139AN.mp3
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-17 19:18:03 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /spanishtest/files/audio14894453139AN.mp3
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-17 19:18:06 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /spanishtest/files/audio14894453139AN.mp3
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-17 19:18:11 Error: level: 0, id: 3
+2017-03-17 19:18:11 Error: pasó
+2017-03-17 19:18:12 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /spanishtest/files/audio1489678490IPQ.mp3
+Stack Trace:
+#0 C:\xampp\htdocs\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-17 19:18:16 Error: level: 1, id: 0
+2017-03-17 19:18:16 Error: pasó
+2017-03-17 19:18:16 Error: level: 1, id: 1
+2017-03-17 19:18:16 Error: pasó
+2017-03-17 19:18:16 Error: level: 2, id: 0
+2017-03-17 19:18:16 Error: pasó

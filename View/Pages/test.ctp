@@ -9,6 +9,9 @@
 	margin: 0 auto;
 	    margin-top: 200px;
 }
+.pregunta{
+	white-space: pre-line;
+}
 #levels{
 	float: left;
 	width: 100%;
@@ -153,8 +156,8 @@
 
 				<p class="pregunta">
 					<?php echo nl2br($question['pregunta']); ?>
-					<div class="audio-content"></div>
 				</p>
+					<div class="audio-content"></div>
 
 			<div class="respuestas">
 				<?php foreach ($question['respuestas'] as $key => $value) { ?>
@@ -212,6 +215,7 @@ $(document).ready(function() {
 
 $('.active').click(function(event) {
 	if (confirm('¿Seguro que desea ir a este nivel?')) {
+		// $('.pregunta > p').html('');
 		var leveltodo=$(this).prop('id');
 		var res = leveltodo.split("_");
 		current_level = res[1];
@@ -245,7 +249,7 @@ function next(){
 		if(current_level<=8){
 
 			if(counter>total){//pasé de nivel
-				//verificar si pasó o no de nivel
+				//verificar si pasó o no de nivelº
 				if(current_level==8){ //terminó la prueba
 					$.post(WEBROOT+'pages/nextLevel',{data:quiz},function(data){
 					  if(data){
