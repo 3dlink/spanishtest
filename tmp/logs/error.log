@@ -158,3 +158,312 @@ Stack Trace:
 2017-03-17 19:18:16 Error: pasó
 2017-03-17 19:18:16 Error: level: 2, id: 0
 2017-03-17 19:18:16 Error: pasó
+2017-03-20 11:14:56 Error: level: 0, id: 1
+2017-03-20 11:14:56 Error: pasó
+2017-03-20 11:15:06 Error: level: 0, id: 2
+2017-03-20 11:15:06 Error: pasó
+2017-03-20 11:15:23 Error: level: 0, id: 3
+2017-03-20 11:15:23 Error: pasó
+2017-03-20 11:07:22 Error: [MissingControllerException] Controller class ImgController could not be found.
+Exception Attributes: array (
+  'class' => 'ImgController',
+  'plugin' => NULL,
+)
+Request URL: /3d/spanishtest/img/file.png
+Stack Trace:
+#0 C:\xampp\htdocs\3d\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-20 11:37:35 Error: level: 0, id: 1
+2017-03-20 11:37:35 Error: pasó
+2017-03-20 11:38:01 Error: level: 0, id: 2
+2017-03-20 11:38:01 Error: pasó
+2017-03-20 11:08:02 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /3d/spanishtest/files/null
+Stack Trace:
+#0 C:\xampp\htdocs\3d\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-20 11:08:06 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /3d/spanishtest/files/null
+Stack Trace:
+#0 C:\xampp\htdocs\3d\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-20 11:08:08 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /3d/spanishtest/files/null
+Stack Trace:
+#0 C:\xampp\htdocs\3d\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-20 11:08:12 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /3d/spanishtest/files/null
+Stack Trace:
+#0 C:\xampp\htdocs\3d\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2017-03-20 11:38:17 Error: level: 0, id: 3
+2017-03-20 11:38:17 Error: pasó
+2017-03-20 11:38:39 Error: level: 1, id: 0
+2017-03-20 11:38:39 Error: pasó
+2017-03-20 11:41:00 Error: level: 1, id: 1
+2017-03-20 11:41:00 Error: pasó
+2017-03-20 11:41:25 Error: level: 1, id: 2
+2017-03-20 11:41:25 Error: pasó
+2017-03-20 11:41:50 Error: level: 1, id: 3
+2017-03-20 11:41:50 Error: pasó
+2017-03-20 11:42:15 Error: level: 2, id: 0
+2017-03-20 11:42:15 Error: pasó
+2017-03-20 11:42:30 Error: level: 2, id: 1
+2017-03-20 11:42:30 Error: pasó
+2017-03-20 11:42:40 Error: level: 2, id: 2
+2017-03-20 11:42:40 Error: pasó
+2017-03-20 11:43:01 Error: level: 2, id: 3
+2017-03-20 11:43:01 Error: pasó
+2017-03-20 11:43:38 Error: level: 3, id: 0
+2017-03-20 11:43:38 Error: pasó
+2017-03-20 11:44:12 Error: level: 3, id: 1
+2017-03-20 11:44:12 Error: pasó
+2017-03-20 11:44:38 Error: level: 3, id: 2
+2017-03-20 11:44:38 Error: pasó
+2017-03-20 11:45:23 Error: level: 3, id: 3
+2017-03-20 11:45:23 Error: pasó
+2017-03-20 11:45:40 Error: level: 4, id: 0
+2017-03-20 11:45:40 Error: pasó
+2017-03-20 11:46:17 Error: level: 4, id: 1
+2017-03-20 11:46:17 Error: pasó
+2017-03-20 11:47:24 Error: level: 4, id: 2
+2017-03-20 11:47:24 Error: pasó
+2017-03-20 11:47:58 Error: level: 4, id: 3
+2017-03-20 11:47:58 Error: pasó
+2017-03-20 11:48:26 Error: level: 5, id: 0
+2017-03-20 11:48:26 Error: pasó
+2017-03-20 11:49:22 Error: level: 5, id: 1
+2017-03-20 11:49:23 Error: pasó
+2017-03-20 11:49:49 Error: level: 5, id: 2
+2017-03-20 11:49:49 Error: pasó
+2017-03-20 11:50:09 Error: level: 5, id: 3
+2017-03-20 11:50:09 Error: pasó
+2017-03-20 11:50:42 Error: level: 6, id: 0
+2017-03-20 11:50:42 Error: pasó
+2017-03-20 11:51:26 Error: level: 6, id: 1
+2017-03-20 11:51:26 Error: pasó
+2017-03-20 11:52:05 Error: level: 6, id: 2
+2017-03-20 11:52:05 Error: pasó
+2017-03-20 11:52:48 Error: level: 6, id: 3
+2017-03-20 11:52:48 Error: pasó
+2017-03-20 11:53:45 Error: level: 7, id: 0
+2017-03-20 11:53:45 Error: pasó
+2017-03-20 11:54:53 Error: level: 7, id: 1
+2017-03-20 11:54:53 Error: pasó
+2017-03-20 11:55:17 Error: level: 7, id: 2
+2017-03-20 11:55:17 Error: pasó
+2017-03-20 11:55:43 Error: level: 7, id: 3
+2017-03-20 11:55:43 Error: pasó
+2017-03-20 13:12:33 Error: level: 2, id: 0
+2017-03-20 13:12:33 Error: pasó
+2017-03-20 13:12:39 Error: level: 2, id: 1
+2017-03-20 13:12:39 Error: pasó
+2017-03-20 13:12:53 Error: level: 2, id: 2
+2017-03-20 13:12:53 Error: pasó
+2017-03-20 13:13:06 Error: level: 2, id: 3
+2017-03-20 13:13:06 Error: pasó
+2017-03-20 13:13:20 Error: level: 3, id: 0
+2017-03-20 13:13:20 Error: pasó
+2017-03-20 13:13:30 Error: level: 3, id: 1
+2017-03-20 13:13:30 Error: pasó
+2017-03-20 13:13:38 Error: level: 3, id: 2
+2017-03-20 13:13:38 Error: pasó
+2017-03-20 13:13:45 Error: level: 3, id: 3
+2017-03-20 13:13:45 Error: pasó
+2017-03-20 13:32:43 Error: level: 3, id: 0
+2017-03-20 13:32:43 Error: pasó
+2017-03-20 13:32:45 Error: level: 1, id: 0
+2017-03-20 13:32:45 Error: pasó
+2017-03-20 13:32:50 Error: level: 1, id: 1
+2017-03-20 13:32:50 Error: pasó
+2017-03-20 13:32:52 Error: level: 3, id: 1
+2017-03-20 13:32:52 Error: pasó
+2017-03-20 13:32:54 Error: level: 1, id: 2
+2017-03-20 13:32:54 Error: pasó
+2017-03-20 13:33:06 Error: level: 1, id: 3
+2017-03-20 13:33:06 Error: pasó
+2017-03-20 13:33:08 Error: level: 3, id: 2
+2017-03-20 13:33:08 Error: pasó
+2017-03-20 13:33:14 Error: level: 0, id: 0
+2017-03-20 13:33:14 Error: pasó
+2017-03-20 13:33:32 Error: level: 0, id: 1
+2017-03-20 13:33:32 Error: pasó
+2017-03-20 13:33:46 Error: level: 3, id: 3
+2017-03-20 13:33:46 Error: pasó
+2017-03-20 13:33:46 Error: level: 0, id: 2
+2017-03-20 13:33:46 Error: pasó
+2017-03-20 13:34:14 Error: level: 0, id: 3
+2017-03-20 13:34:14 Error: pasó
+2017-03-20 13:34:22 Error: level: 1, id: 0
+2017-03-20 13:34:22 Error: pasó
+2017-03-20 13:34:28 Error: level: 1, id: 1
+2017-03-20 13:34:28 Error: pasó
+2017-03-20 13:34:29 Error: level: 1, id: 0
+2017-03-20 13:34:29 Error: pasó
+2017-03-20 13:34:39 Error: level: 1, id: 2
+2017-03-20 13:34:39 Error: pasó
+2017-03-20 13:34:53 Error: level: 1, id: 3
+2017-03-20 13:34:53 Error: pasó
+2017-03-20 13:35:08 Error: level: 2, id: 0
+2017-03-20 13:35:08 Error: pasó
+2017-03-20 13:35:28 Error: level: 2, id: 1
+2017-03-20 13:35:28 Error: pasó
+2017-03-20 13:35:36 Error: level: 2, id: 2
+2017-03-20 13:35:36 Error: pasó
+2017-03-20 13:36:06 Error: level: 2, id: 3
+2017-03-20 13:36:06 Error: pasó
+2017-03-20 13:36:22 Error: level: 1, id: 1
+2017-03-20 13:36:22 Error: pasó
+2017-03-20 13:36:29 Error: level: 1, id: 2
+2017-03-20 13:36:29 Error: pasó
+2017-03-20 13:36:36 Error: level: 1, id: 3
+2017-03-20 13:36:36 Error: pasó
+2017-03-20 13:40:46 Error: level: 1, id: 0
+2017-03-20 13:40:46 Error: pasó
+2017-03-20 13:40:53 Error: level: 1, id: 1
+2017-03-20 13:40:53 Error: pasó
+2017-03-20 13:41:01 Error: level: 1, id: 2
+2017-03-20 13:41:01 Error: pasó
+2017-03-20 13:41:05 Error: level: 1, id: 3
+2017-03-20 13:41:05 Error: pasó
+2017-03-20 13:41:16 Error: level: 0, id: 0
+2017-03-20 13:41:16 Error: pasó
+2017-03-20 13:48:55 Error: level: 0, id: 1
+2017-03-20 13:48:55 Error: pasó
+2017-03-20 13:57:54 Error: level: 0, id: 2
+2017-03-20 13:57:54 Error: pasó
+2017-03-20 13:58:07 Error: level: 0, id: 3
+2017-03-20 13:58:07 Error: pasó
+2017-03-20 13:58:25 Error: level: 1, id: 0
+2017-03-20 13:58:25 Error: pasó
+2017-03-20 13:58:30 Error: level: 1, id: 1
+2017-03-20 13:58:30 Error: pasó
+2017-03-20 13:58:54 Error: level: 1, id: 2
+2017-03-20 13:58:54 Error: pasó
+2017-03-20 14:00:13 Error: level: 1, id: 3
+2017-03-20 14:00:13 Error: pasó
+2017-03-20 14:00:25 Error: level: 2, id: 0
+2017-03-20 14:00:25 Error: pasó
+2017-03-20 14:00:32 Error: level: 2, id: 1
+2017-03-20 14:00:32 Error: pasó
+2017-03-20 14:00:40 Error: level: 2, id: 2
+2017-03-20 14:00:41 Error: pasó
+2017-03-20 14:00:53 Error: level: 2, id: 3
+2017-03-20 14:00:53 Error: pasó
+2017-03-20 14:01:08 Error: level: 3, id: 0
+2017-03-20 14:01:08 Error: pasó
+2017-03-20 14:01:30 Error: level: 3, id: 1
+2017-03-20 14:01:30 Error: pasó
+2017-03-20 14:01:36 Error: level: 3, id: 2
+2017-03-20 14:01:36 Error: pasó
+2017-03-20 14:01:48 Error: level: 3, id: 3
+2017-03-20 14:01:48 Error: pasó
+2017-03-20 21:50:45 Error: [SocketException] php_network_getaddresses: getaddrinfo failed: Host desconocido. 
+Request URL: /3d/spanishtest/usermgmt/users/reasign/16
+Stack Trace:
+#0 C:\xampp\htdocs\3d\spanishtest\cakephp\lib\Cake\Network\Email\SmtpTransport.php(154): CakeSocket->connect()
+#1 C:\xampp\htdocs\3d\spanishtest\cakephp\lib\Cake\Network\Email\SmtpTransport.php(95): SmtpTransport->_connect()
+#2 C:\xampp\htdocs\3d\spanishtest\cakephp\lib\Cake\Network\Email\CakeEmail.php(1158): SmtpTransport->send(Object(CakeEmail))
+#3 C:\xampp\htdocs\3d\spanishtest\Plugin\Usermgmt\Controller\UsersController.php(822): CakeEmail->send('Bienvenido Dieg...')
+#4 C:\xampp\htdocs\3d\spanishtest\Plugin\Usermgmt\Controller\UsersController.php(620): UsersController->__enviar_correo('info@3dlink.com...', 'dbrito_9_9@hotm...', 'Spanish Test: \xE7...', 'Bienvenido Dieg...')
+#5 [internal function]: UsersController->reasign('16')
+#6 C:\xampp\htdocs\3d\spanishtest\cakephp\lib\Cake\Controller\Controller.php(490): ReflectionMethod->invokeArgs(Object(UsersController), Array)
+#7 C:\xampp\htdocs\3d\spanishtest\cakephp\lib\Cake\Routing\Dispatcher.php(191): Controller->invokeAction(Object(CakeRequest))
+#8 C:\xampp\htdocs\3d\spanishtest\cakephp\lib\Cake\Routing\Dispatcher.php(165): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest))
+#9 C:\xampp\htdocs\3d\spanishtest\webroot\index.php(109): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2017-03-20 21:53:42 Error: level: 0, id: 1
+2017-03-20 21:53:42 Error: pasó
+2017-03-20 21:54:41 Error: level: 0, id: 1
+2017-03-20 21:54:41 Error: pasó
+2017-03-20 21:54:41 Error: level: 0, id: 2
+2017-03-20 21:54:41 Error: pasó
+2017-03-20 21:54:46 Error: level: 0, id: 3
+2017-03-20 21:54:46 Error: pasó
+2017-03-20 21:54:50 Error: level: 0, id: 4
+2017-03-20 21:54:50 Error: pasó
+2017-03-20 21:54:51 Error: level: 0, id: 5
+2017-03-20 21:54:51 Error: pasó
+2017-03-20 21:54:52 Error: level: 0, id: 7
+2017-03-20 21:54:52 Error: pasó
+2017-03-20 21:54:52 Error: level: 0, id: 6
+2017-03-20 21:54:52 Error: pasó
+2017-03-20 21:54:53 Error: level: 0, id: 8
+2017-03-20 21:54:53 Error: pasó
+2017-03-20 21:54:53 Error: level: 0, id: 10
+2017-03-20 21:54:53 Error: pasó
+2017-03-20 21:54:53 Error: level: 0, id: 9
+2017-03-20 21:54:53 Error: pasó
+2017-03-20 21:55:52 Error: level: 0, id: 1
+2017-03-20 21:55:52 Error: pasó
+2017-03-20 21:57:09 Error: level: 0, id: 1
+2017-03-20 21:57:09 Error: pasó
+2017-03-20 21:58:20 Error: level: 0, id: 1
+2017-03-20 21:58:20 Error: pasó
+2017-03-20 21:58:25 Error: level: 0, id: 2
+2017-03-20 21:58:25 Error: pasó
+2017-03-20 21:58:30 Error: level: 0, id: 3
+2017-03-20 21:58:30 Error: pasó
+2017-03-20 21:58:34 Error: level: 0, id: 4
+2017-03-20 21:58:34 Error: pasó
+2017-03-20 22:06:55 Error: level: 0, id: 1
+2017-03-20 22:06:55 Error: pasó
+2017-03-20 22:07:05 Error: level: 0, id: 2
+2017-03-20 22:07:05 Error: pasó
+2017-03-20 22:07:14 Error: level: 7, id: 0
+2017-03-20 22:07:14 Error: pasó
+2017-03-20 22:08:18 Error: level: 7, id: 1
+2017-03-20 22:08:18 Error: pasó
+2017-03-20 22:09:02 Error: level: 7, id: 2
+2017-03-20 22:09:02 Error: pasó
+2017-03-20 22:09:16 Error: level: 7, id: 3
+2017-03-20 22:09:16 Error: pasó
+2017-03-20 22:10:07 Error: level: 7, id: 4
+2017-03-20 22:10:07 Error: pasó
+2017-03-20 22:10:27 Error: level: 7, id: 5
+2017-03-20 22:10:27 Error: pasó
+2017-03-20 22:10:46 Error: level: 7, id: 6
+2017-03-20 22:10:46 Error: pasó
+2017-03-20 22:11:08 Error: level: 7, id: 7
+2017-03-20 22:11:08 Error: pasó
+2017-03-20 22:11:26 Error: level: 7, id: 8
+2017-03-20 22:11:26 Error: pasó
+2017-03-20 22:11:50 Error: level: 7, id: 9
+2017-03-20 22:11:50 Error: pasó
+2017-03-20 22:12:02 Error: level: 7, id: 10
+2017-03-20 22:12:02 Error: pasó
+2017-03-20 22:12:49 Error: level: 7, id: 11
+2017-03-20 22:12:49 Error: pasó
+2017-03-20 22:13:11 Error: level: 7, id: 12
+2017-03-20 22:13:11 Error: pasó
+2017-03-20 22:14:04 Error: level: 7, id: 13
+2017-03-20 22:14:05 Error: pasó
+2017-03-20 22:14:52 Error: level: 7, id: 14
+2017-03-20 22:14:52 Error: pasó
+2017-03-20 22:15:26 Error: level: 7, id: 15
+2017-03-20 22:15:26 Error: pasó
+2017-03-20 22:15:56 Error: level: 7, id: 16
+2017-03-20 22:15:56 Error: pasó
+2017-03-20 22:16:31 Error: level: 7, id: 17
+2017-03-20 22:16:31 Error: pasó
+2017-03-20 22:17:11 Error: level: 7, id: 18
+2017-03-20 22:17:11 Error: pasó
+2017-03-20 22:17:25 Error: level: 7, id: 19
+2017-03-20 22:17:25 Error: pasó

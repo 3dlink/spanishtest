@@ -162,7 +162,7 @@
 			<div class="respuestas">
 				<?php foreach ($question['respuestas'] as $key => $value) { ?>
 					<div class="respuesta">
-						<input id="answercheck_<?php echo $key; ?>" value="<?php echo $value['id']; ?>" type="radio" style="float:left;" name="correct">
+						<input id="answercheck_<?php echo $key; ?>" value="<?php echo $value['id']; ?>" type="radio" style="float:left;" name="correct" class="answer_radio">
 						<p id="answer_<?php echo $key; ?>"><?php echo $value['value']; ?></p>
 					</div>
 				<?php } ?>
@@ -230,7 +230,16 @@ $('.active').click(function(event) {
 	}
 });
 
+$('#next_btn').click(function(event) {
+	$('#next_btn').prop('disabled', true);
+});
+
+$('.answer_radio').click(function(event) {
+	$('#next_btn').prop('disabled', false);
+});
+
 function next(){
+	$('#next_btn').prop('disabled', true);
 
 	if(!$('input:radio[name=correct]').is(':checked')){
 		toastr.error('Seleccione por favor la respuesta correcta');
@@ -299,9 +308,11 @@ function next(){
 					  		$('#level_'+current_level).removeClass('no-active');
 					  		$('#level_'+current_level).addClass('active');
 					  	nexQuestion(q,current_level,counter);
+							$('#next_btn').prop('disabled', false);
 
 					  }else{
 					  	//no pasaste
+							$('#next_btn').prop('disabled', false);
 					  	proximo = parseInt(current_level);
 					  	for (var i = proximo; i <= 8; i++) {
 					  		$('#level_'+i).removeClass('active');
@@ -373,6 +384,7 @@ function nexQuestion(id,curr,count){
 			}else{
 				$('.audio-content').html('');
 			}
+					$('#next_btn').prop('disabled', false);
 	  }
 	},'json');
 }

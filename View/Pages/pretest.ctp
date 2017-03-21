@@ -18,13 +18,23 @@
 		<section class="prueba">
 
 			<?php if($user['User']['done']){ ?>
-				<p style="text-align:justify;">Ya usted presentó la prueba, comuníquese con su profesor para que le sea reasignada la prueba.</p>
+				<p style="text-align:justify;">
+					Usted no puede tomar este examen ya que fue presentado anteriormente, favor dirijase al administrador para ser autorizado.
+					<br><br>
+					因您之前已经参与过测试因此系统拒接您的再次参与，请与管理员联系重新取得授权
+				</p>
 			<?php }else{ ?>
-				<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
-				<br>
-				<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
-				<br>
-				<p style="text-align:justify;">Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba. Aquí debería haber una descripción de la prueba.</p>
+				<p style="text-align:justify;">
+					Este examen objetivo esta dividido en dos grandes secciones, lectura y audio.
+					<br> <br>
+					La duracion total del examen es de 1 hora 45 minutos, todas las preguntas se responden por seleccion, El numero de niveles es de 8., pudiendo el participante iniciar en cualquiera de los niveles que considere el suyo.
+				</p>
+				<br> <br>
+				<p style="text-align:justify;">
+					测试主要分成两部分：阅读和听力。
+					<br> <br>
+					测试时间是1小时45分钟，考题均为选择题，共有8个级别，考生可在任何认为可以的阶段开始进行测试。
+				</p>
 			<?php } ?>
 
 

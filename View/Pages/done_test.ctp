@@ -19,6 +19,8 @@ h1{
 
 		<section class="prueba">
 			<p style="text-align:justify;"><?php echo $description; ?></p>
+			<br><br>
+			<p style="text-align:justify;"><?php echo $description_chino; ?></p>
 		</section>	
 
 

@@ -16,7 +16,6 @@
   float: right;
 }
 </style>
-
 <article class="card shadow-1">
   <fieldset>
       <legend id="title">Participante<input id="reasign" type = "button" class="btn btn-primary" onclick="reasignar();" title="regresar" value = "Reasignar"></legend>
@@ -44,7 +43,7 @@
       	</div>
       	<legend>RESULTADOS DE LA PRUEBA</legend>
       	<?php foreach ($statics as $key => $value): ?>
-          <legend>Nivel <?php echo $key+1; ?></legend>
+          <legend>Nivel <?php echo $value['level']; ?></legend>
           <div>
             <div class="col-md-4">
               <div class="form-group">

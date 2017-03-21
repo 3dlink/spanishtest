@@ -125,16 +125,16 @@ class UsersController extends UserMgmtAppController {
 				$category = $this->Category->findById($value['Question'][0]['category_id']);
 				$type = $this->Type->findById($value['Question'][0]['type_id']);
 				$answer_0 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_0']);
-				$correct_0 = $value['Question'][0]['ResultsQuestion']['correct'];
+				// $correct_0 = $value['Question'][0]['ResultsQuestion']['correct'];
+				$correct_0 = $answer_0['Answer']['correct'];
 				$selected_0 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
-
 				if($selected_0 == $value['Question'][0]['ResultsQuestion']['answer_0']){
 					$selected_0 = 1;
 				}else{
 					$selected_0 = 0;
 				}
 
-				if($correct_0 == $value['Question'][0]['ResultsQuestion']['answer_0']){
+				if($correct_0){
 					$correct_0 = 1;
 				}else{
 					$correct_0 = 0;
@@ -145,8 +145,10 @@ class UsersController extends UserMgmtAppController {
 					$good = 1;
 
 
+
 				$answer_1 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_1']);
-				$correct_1 = $value['Question'][0]['ResultsQuestion']['correct'];
+				// $correct_1 = $value['Question'][0]['ResultsQuestion']['correct'];
+				$correct_1 = $answer_1['Answer']['correct'];
 				$selected_1 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
 
 				if($selected_1 == $value['Question'][0]['ResultsQuestion']['answer_1']){
@@ -155,7 +157,7 @@ class UsersController extends UserMgmtAppController {
 					$selected_1 = 0;
 				}
 
-				if($correct_1 == $value['Question'][0]['ResultsQuestion']['answer_1']){
+				if($correct_1){
 					$correct_1 = 1;
 				}else{
 					$correct_1 = 0;
@@ -165,8 +167,10 @@ class UsersController extends UserMgmtAppController {
 					$good = 1;
 
 
+
 				$answer_2 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_2']);
-				$correct_2 = $value['Question'][0]['ResultsQuestion']['correct'];
+				// $correct_2 = $value['Question'][0]['ResultsQuestion']['correct'];
+				$correct_2 = $answer_2['Answer']['correct'];
 				$selected_2 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
 
 				if($selected_2 == $value['Question'][0]['ResultsQuestion']['answer_2']){
@@ -175,7 +179,7 @@ class UsersController extends UserMgmtAppController {
 					$selected_2 = 0;
 				}
 
-				if($correct_2 == $value['Question'][0]['ResultsQuestion']['answer_2']){
+				if($correct_2){
 					$correct_2 = 1;
 				}else{
 					$correct_2 = 0;
@@ -184,17 +188,18 @@ class UsersController extends UserMgmtAppController {
 				if($correct_2 && $selected_2)
 					$good = 1;
 
-				$answer_3 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_3']);
-				$correct_3 = $value['Question'][0]['ResultsQuestion']['correct'];
-				$selected_3 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
 
+				$answer_3 = $this->Answer->findById($value['Question'][0]['ResultsQuestion']['answer_3']);
+				// $correct_3 = $value['Question'][0]['ResultsQuestion']['correct'];
+				$correct_3 = $answer_3['Answer']['correct'];
+				$selected_3 = $value['Question'][0]['ResultsQuestion']['answer_selected'];
 				if($selected_3 == $value['Question'][0]['ResultsQuestion']['answer_3']){
 					$selected_3 = 1;
 				}else{
 					$selected_3 = 0;
 				}
 
-				if($correct_3 == $value['Question'][0]['ResultsQuestion']['answer_3']){
+				if($correct_3){
 					$correct_3 = 1;
 				}else{
 					$correct_3 = 0;
@@ -221,10 +226,12 @@ class UsersController extends UserMgmtAppController {
 			$gl = 0;
 			$ga = 0;
 			$k = 1;
+			$lvl = 0;
 			$statics = array();
 
 			foreach ($results as $nivel) {
 				foreach ($nivel as $key => $value) {
+					$lvl = $value['level'];
 					if($value['type']==1){
 						$tl++;
 						if($value['good']==1){
@@ -239,8 +246,10 @@ class UsersController extends UserMgmtAppController {
 						}
 					}
 				}
-				$point = ($g*100)/$_SESSION['count'][$k];
+
+				$point = ($g*100)/$_SESSION['count'][$lvl-1];
 				array_push($statics, array(
+					'level' => $lvl,
 					'auditiva' => $ga,
 					'lectora' => $gl,
 					'percent' => $point,
@@ -254,6 +263,7 @@ class UsersController extends UserMgmtAppController {
 				$ga = 0;
 				$k++;
 			}
+
 
 			$this->set('statics',$statics);
 		}
@@ -301,7 +311,7 @@ class UsersController extends UserMgmtAppController {
 				}
 
 				if($user['User']['expired']){
-					$this->Session->setFlash('Contraseña vencida, comuníquese con el administrador para que le asigne otra contraseña.', 'default', array('class' => 'error_message'));
+					$this->Session->setFlash('Su tiempo ha expirado, Favor dirijase al administrador. 您已经超时了，请与管理员联系', 'default', array('class' => 'error_message'));
 					return;
 				}
 
@@ -353,19 +363,19 @@ class UsersController extends UserMgmtAppController {
 						$user['User']['due_date'] = '';
 						$user['User']['expired'] = 1;
 						if($this->User->save($user)){
-		        	$this->Session->setFlash('Contraseña vencida, comuníquese con el administrador para que le asigne otra contraseña.', 'default', array('class' => 'error_message'));
+		        	$this->Session->setFlash('Su tiempo ha expirado, Favor dirijase al administrador. 您已经超时了，请与管理员联系', 'default', array('class' => 'error_message'));
 							return;
 						}
 	        }
 
 
 					if($groupid != 3){
-		$_SESSION['count'] = array(4,4,4,4,4,4,4,4);
-		// $_SESSION['count'] = array(30,30,30,30,20,20,20,20);
+		// $_SESSION['count'] = array(4,4,4,4,4,4,4,4);
+		$_SESSION['count'] = array(30,30,30,30,20,20,20,20);
 						$this->redirect('/dashboard');
 					}else{
-		$_SESSION['count'] = array(4,4,4,4,4,4,4,4);
-		// $_SESSION['count'] = array(30,30,30,30,20,20,20,20);
+		// $_SESSION['count'] = array(4,4,4,4,4,4,4,4);
+		$_SESSION['count'] = array(30,30,30,30,20,20,20,20);
 						$this->redirect('/dashTest');
 					}
 				} else {
@@ -553,13 +563,13 @@ class UsersController extends UserMgmtAppController {
 		$part = $this->User->findById($id);
 		$token = $part['User']['token'];
 
-		$from = 'info@3dlink.com.ve';
+		$from = 'info@crectest.com.ve';
 		$to = $part['User']['email'];
-		$subject=  "Spanish Test: Se le ha asignado una prueba de español";
+		$subject=  "Spanish Test: 您已经选择由管理员决定的西语水平测试";
 		$link = Router::url("/",true);
 
 		$mensaje=
-		"Bienvenido ".$part['User']['first_name'].", para realizar la prueba de español debe ingresar en: ".$link." <br><br><br>"
+		"Bienvenido ".$part['User']['first_name'].", usted ha sido seleccionado por el administrador para tomar el examen de ubicacion de nivel del idioma Español (您已经选择由管理员决定的西语水平测试): ".$link." <br><br><br>"
 		."Deberá ingresar con la contraseña: <b>".$token."</b> y su correo electrónico<br>"
 		."<b>La contraseña vencerá en 7 días.</b><br><br><br>"
 		."<b>Gracias,</b> <br>"
@@ -596,9 +606,9 @@ class UsersController extends UserMgmtAppController {
 		$part = $this->User->findById($id);
 		$token = $part['User']['token'];
 
-		$from = 'info@3dlink.com.ve';
+		$from = 'info@crectest.com.ve';
 		$to = $part['User']['email'];
-		$subject=  "Spanish Test: Se le ha reasignado una prueba de español";
+		$subject=  "Spanish Test: 管理员已分配好测试";
 		$link = Router::url("/",true);
 
 		$mensaje=

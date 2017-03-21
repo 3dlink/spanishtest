@@ -1,3 +1,11 @@
+<style type="text/css">
+  body{
+    background-image: url('<?php echo $this->webroot; ?>img/crects.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>
+
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <div class="logo">
   <img src="<?php echo $this->webroot; ?>img/logo.png">
@@ -21,7 +29,7 @@
         </div> -->
       </div>
       <div class="form-group" style="float:left;width:100%;">
-        <div class="g-recaptcha" id="captcha" data-callback="correctCaptcha" data-sitekey="6LdSwBMUAAAAAH4Rt9kv_-S6lxj-abP4s8j3YzR5"></div>
+        <div class="g-recaptcha" id="captcha" data-callback="correctCaptcha" data-sitekey="6Le8shkUAAAAAADlyy7SeLm4SVFa_ufLaYI7k-l3"></div>
       </div>
       <hr>
       <div class="margenesHorizontales margenesVerticales" style="text-align:right;">
@@ -49,12 +57,7 @@
     captcha = 1;
   };
 
-  // $('#login').submit(function() {
-  //   if(captcha == 0){
-  //     alert('Debe aprobar el Captcha. Inténtelo nuevamente.');
-  //     return false;
-  //   }
-  // });
+  $('body').css('height', $( window ).height());
 
 </script>
 

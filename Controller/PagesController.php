@@ -241,8 +241,8 @@ class PagesController extends AppController {
 			$questionsByLevel_Auditiva[$i] = $this->Question->find('all',array('conditions' => array('Question.level_3d' => ($i+1),'Question.type_id=2')));
 		}
 
-		// $count = array(30,30,30,30,20,20,20,20);
-		$count = array(4,4,4,4,4,4,4,4);
+		$count = array(30,30,30,30,20,20,20,20);
+		// $count = array(4,4,4,4,4,4,4,4);
 
 		for ($i=0; $i < 8; $i++) {
 
@@ -390,13 +390,16 @@ class PagesController extends AppController {
 		if(!is_null($action)){
 			if($action==1){
 				$title = "PRUEBA MODELO";
-				$description = "Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos.";
+				$description = "Usted ha finalizado el examen modelo.";
+				$description_chino = "您已经完成了所要求的级别水平考试";
 			}elseif($action==2){
 				$title = "PRUEBA DE ESPAÑOL";
-				$description = "Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos.";
+				$description = "Usted ha finalizado el examen. El nivel obtenido representa que usted cumplio los requerimientos de dicho nivel.";
+				$description_chino = "您已经完成了所要求的级别水平考试";
 			}else{
 				$title = "PRUEBA DE ESPAÑOL";
-				$description = "Tiempo excedido haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos. Aquí debería haber una descripción de los próximos pasos.";
+				$description = "Su tiempo ha expirado, Favor dirijase al administrador..";
+				$description_chino = "您已经完成了所要求的级别水平考试";
 			}
 		}
 		$user=$this->UserAuth->getUser();	
@@ -406,6 +409,7 @@ class PagesController extends AppController {
 
 		$this->set('title',$title);
 		$this->set('description',$description);
+		$this->set('description_chino',$description_chino);
 	}
 
 
@@ -461,6 +465,7 @@ class PagesController extends AppController {
 
 				if($percent >= 75){//pasó de nivel
 					if($this->Result->saveAll($result)){
+						$this->User->id = $user['User']['id'];
 						$this->User->saveField('actual_level', $level);
 						return json_encode(1);
 					}else{
